@@ -11,10 +11,12 @@ export default {
 
             var oInput = await request.json();
 
+            var sModel = !!oInput.model ? oInput.model : 'gpt-4o-mini';
+            var oMessages = !!oInput.messages ? oInput.messages : oInput;
 
             const chatCompletion = await openai.chat.completions.create({
-                model: 'gpt-4o-mini',
-                messages: oInput,
+                model: sModel,
+                messages: oMessages,
                 temperature: 0,
                 max_tokens: 2048,
                 top_p: 1,
